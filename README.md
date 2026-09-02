@@ -170,11 +170,17 @@ flowchart TB
 
 ```text
 NN-Fundamental/
-├── FFN/
+├── 1.FFN/
 │   └── main.py          # Feedforward neural network, activations, and test execution
+├── 2.CNN/
+│   └── main.py          # Convolutional neural network, spatial pooling, and test execution
+├── 3.RNN/
+│   └── main.py          # Recurrent neural network, sequence dynamics, and test execution
 ├── .gitignore           # Environment and cache artifact ignore rules
-├── requirements.txt     # Minimal dependencies (numpy>=1.24.0)
+├── pyproject.toml       # Project metadata and dependency specification
+├── requirements.txt     # Standard dependency pin (numpy>=1.24.0)
 ├── ruff.toml            # Linter and formatter configuration
+├── uv.lock              # Deterministic uv dependency lockfile
 └── README.md            # Architecture documentation and execution guide
 ```
 
@@ -182,16 +188,23 @@ NN-Fundamental/
 
 ## 5. Quickstart
 
-### Setup Virtual Environment
+### Setup & Synchronization with `uv`
 
 ```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+# Sync virtual environment and dependencies
+uv sync
 ```
 
-### Run Demonstration
+### Run Demonstrations
 
 ```powershell
-python FFN/main.py
+# Run Feedforward Network
+uv run python 1.FFN/main.py
+
+# Run Convolutional Neural Network
+uv run python 2.CNN/main.py
+
+# Run Recurrent Neural Network
+uv run python 3.RNN/main.py
 ```
+
