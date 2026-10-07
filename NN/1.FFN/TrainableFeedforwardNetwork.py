@@ -118,11 +118,11 @@ def main() -> None:
 
     model = TrainableFeedforwardNetwork(
         input_size=2,
-        hidden_size=64,
+        hidden_size=16,
         output_size=3,
-        learning_rate=1.0,
+        learning_rate=1,
     )
-    epochs = 1000
+    epochs =50000
 
     for epoch in range(epochs + 1):
         loss, acc = model.train_step(X, y)
