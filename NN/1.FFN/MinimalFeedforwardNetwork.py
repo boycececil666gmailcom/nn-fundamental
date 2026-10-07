@@ -4,7 +4,7 @@ import numpy as np
 # endregion
 
 
-# region Activation Functions
+# region Activation
 def sigmoid(x: np.ndarray) -> np.ndarray:
     """Sigmoid activation function."""
     return 1 / (1 + np.exp(-x))
@@ -24,8 +24,8 @@ def softmax(x: np.ndarray) -> np.ndarray:
 # endregion
 
 
-# region Network Definition
-class SimpleFeedforwardNetwork:
+# region Network
+class MinimalFeedforwardNetwork:
     """Two-layer feedforward neural network for classification."""
 
     def __init__(self, input_size: int, hidden_size: int, output_size: int) -> None:
@@ -33,27 +33,28 @@ class SimpleFeedforwardNetwork:
         self.b1 = np.zeros((1, hidden_size))
         self.W2 = np.random.randn(hidden_size, output_size) * 0.01
         self.b2 = np.zeros((1, output_size))
+
         print(f"[FFN-Init] Initialized W1: {self.W1.shape}, b1: {self.b1.shape}")
         print(f"[FFN-Init] Initialized W2: {self.W2.shape}, b2: {self.b2.shape}")
 
     def forward(self, X: np.ndarray) -> np.ndarray:
         """Compute forward pass through hidden and output layers."""
-        h_input = np.dot(X, self.W1) + self.b1
-        h_output = relu(h_input)
-        o_input = np.dot(h_output, self.W2) + self.b2
-        return softmax(o_input)
+        z1 = np.dot(X, self.W1) + self.b1
+        a1 = relu(z1)
+        z2 = np.dot(a1, self.W2) + self.b2
+        return softmax(z2)
 
 
 # endregion
 
 
-# region Main Routine
+# region Main
 def main() -> None:
     input_dim = 10
     hidden_dim = 20
     output_dim = 3
 
-    nn = SimpleFeedforwardNetwork(input_dim, hidden_dim, output_dim)
+    nn = MinimalFeedforwardNetwork(input_dim, hidden_dim, output_dim)
 
     dummy_input = np.random.randn(5, input_dim)
     print(f"[FFN-Main] Dummy input shape: {dummy_input.shape}")
@@ -71,4 +72,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 # endregion
