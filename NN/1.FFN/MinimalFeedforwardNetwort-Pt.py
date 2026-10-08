@@ -50,10 +50,7 @@ def main() -> None:
     predictions = model(dummy_input)
     print(f"[PtFFN-Main] Predictions shape: {list(predictions.shape)}")
     print(f"[PtFFN-Main] Predictions:\n{predictions}")
-
-    prob_sums = torch.sum(predictions, dim=1)
-    print(f"[PtFFN-Main] Sum of probabilities per sample:\n{prob_sums}")
-
+    
     predicted_classes = torch.argmax(predictions, dim=1)
     print(f"[PtFFN-Main] Predicted classes: {predicted_classes.tolist()}")
 
