@@ -47,13 +47,6 @@ class PyTorchFeedforwardNetwork(nn.Module):
         self.relu = nn.ReLU()
         self.fc2 = nn.Linear(hidden_size, output_size)
 
-        # Match TrainableFeedforwardNetwork initialization scale
-        with torch.no_grad():
-            self.fc1.weight.copy_(torch.randn_like(self.fc1.weight) * 0.1)
-            self.fc1.bias.zero_()
-            self.fc2.weight.copy_(torch.randn_like(self.fc2.weight) * 0.1)
-            self.fc2.bias.zero_()
-
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """Compute logits forward pass."""
         z1 = self.fc1(x)
