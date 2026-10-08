@@ -5,11 +5,6 @@ import numpy as np
 
 
 # region Activation
-def sigmoid(x: np.ndarray) -> np.ndarray:
-    """Sigmoid activation function."""
-    return 1 / (1 + np.exp(-x))
-
-
 def relu(x: np.ndarray) -> np.ndarray:
     """Rectified Linear Unit (ReLU) activation function."""
     return np.maximum(0, x)
